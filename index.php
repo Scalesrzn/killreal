@@ -1,3 +1,17 @@
+<?php
+	session_start();
+	ob_start();
+	ini_set('display_errors',1);
+	date_default_timezone_set('Europe/Moscow');
+	header("Content-Type: text/html; charset=utf-8");
+	header("Cache-control: no-store");
+	if (isset($_COOKIE['dateVisit']))
+		$dateVisit = $_COOKIE['dateVisit'];
+	setcookie('dateVisit',date('Y-m-d H:i:s'),time()+0xFFFFFFF);
+		//Инициализация переменных
+	$page = "";
+
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -20,6 +34,35 @@
 		</div>
 		
 		<div class='center'>
+            <div class="toggle">
+					<?php
+						if (!empty($_GET['page']))
+								$page = $_GET['page'];
+						require 'auth.php';
+						if (empty($page)) {
+					?>
+
+					<?php 
+						}
+						else switch($page)
+						{
+							case 'lab1': 
+							include 'lab_rab1.php'; break;
+							case 'lab2': 
+							include 'lab_rab2.php'; break;
+							case 'lab3': 
+							include 'lab_rab3.php'; break;				
+							case 'catalog':
+							include 'catalog.php'; break;	
+							case 'add': 
+							include 'add.php'; break;
+							case 'item': 
+							include 'item.php'; break;	
+							case 'edit': 
+							include 'edit.php'; break;	
+						}		
+					?>
+			</div>
             <div class='about'>
                 <div> <img src="../gallery/room.jpg" alt="ШПАК"> </div>
                 <span>
