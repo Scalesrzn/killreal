@@ -1,0 +1,156 @@
+*{
+	box-sizing: border-box;
+	padding: 0px;
+	margin: 0px;
+	
+}
+.label{
+	width: 100%;
+	display: flex;
+	align-items: center;
+
+}
+.main{
+	background:white;
+	font-family: Trebuchet MS, Helvetica;
+}
+
+.header div{
+	justify-content: center;
+}
+.header img{
+    width: 330px;
+    height: 200px;
+}
+
+.header span{
+	text-align: center;
+    font-family: Trebuchet MS, Helvetica;
+	font-size: 3em;
+}
+
+.btn{
+	border: 0px;
+    width: 100%;
+    height: 5em;
+	background:linear-gradient(#97b7da, #97dbe7) #c7a6d1;
+	color: white;
+    border-radius: 10px;
+	transition: 10s;
+	float: left;
+}
+.btn:hover { background: linear-gradient(#816dda, #ff36e4) #c7a6d1; }
+
+
+.menu {
+	height: 3.5em;
+	display: inherit;
+	justify-content: left;
+	width: 100%;
+
+}
+
+.menu button{
+	height: 3em;
+	width: 100%;
+	margin-top: 5px;
+
+
+}
+
+
+.content{
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.wrapper{
+	display:flex;
+}
+.center{
+	width:80%;
+}
+
+.center .about{
+	padding: 10px;
+}
+
+.header div{
+	align-content: center;
+	align-items:  center;
+}
+.lborder{
+	float: left;
+	width: 20%;
+}
+
+.rborder{
+	float: right;
+	width: 10%;
+
+}
+
+
+.footer{
+	margin-top: 20px;
+	border-top-left-radius: 20px; 
+	border-top-right-radius: 20px; 
+	background-color: rgba(234,249,246);
+
+}
+
+.footer timeSys{
+	float: top;
+}
+
+
+.table
+{
+	width:700px; 
+	height:200px; 
+	margin:auto; 
+        margin-top:30px;
+	border:1px solid
+}
+
+.table td
+{
+	border:1px solid
+}
+
+h2, .field-block {
+	margin-bottom: 20px;
+}
+
+.field-block label, .field-block .field {
+	display: block;
+	width: 100%;
+}
+
+.field-block label {
+	margin-bottom: 8px;
+	font-weight: bold;
+}
+
+.field-block .field {
+	font-size: 16px;
+	padding: 8px 12px;
+	line-height: 1.5;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.field-block .field:focus {
+  border-color: #66afe9;
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+.field-block textarea {
+	resize: vertical;
+}
