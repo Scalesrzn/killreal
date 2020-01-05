@@ -30,10 +30,10 @@
 					<tr>			
 						<?php
 						if (!empty($_SESSION['catalog'])){
-							foreach($_SESSION['catalog'] as $brand => $massiv) {
+							foreach($_SESSION['catalog'] as $doctor => $massiv) {
 								echo "<tr>";						
-								echo "<td width='10px'><input type='checkbox' name='delId[]' value=$brand></td>";
-								echo "<td><a href='index.php?page=item&id=$brand'>".$massiv['name']."</a></td><td>".$massiv['brand']."</td><td>".$massiv['year']."</td><td>".$massiv['description']."</td>";
+								echo "<td width='10px'><input type='checkbox' name='delId[]' value=$doctor></td>";
+								echo "<td><a href='index.php?page=item&id=$doctor'>".$massiv['name']."</a></td><td>".$massiv['doctor']."</td><td>".$massiv['year']."</td><td>".$massiv['description']."</td>";
 								echo "</tr>";
 							}
 						}

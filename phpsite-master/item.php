@@ -6,8 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 ?>
 
 <br/>
-<a href='index.php?page=catalog'><button class='btn'>Назад</button></a>
-<a href='index.php?page=edit&id=<? echo $id; ?>'><button class='btn'>Редактировать</button></a>
+<a href='index.php?page=catalog' style='margin-left:220px;'>Назад</a>
+<a href='index.php?page=edit&id=<? echo $id; ?>' style='margin-left:20px'>Редактировать</a>
 <br/><br/>
 <table border="1" style="text-align:left;" align="center" >
 	<tr>

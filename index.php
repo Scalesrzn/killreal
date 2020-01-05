@@ -23,6 +23,7 @@
 <body>
 
 <div class='main'>
+	<?php include "lib.inc.php" ?>
 	<div class='header'>
         <?php include 'top.inc.php'?>
 	</div>

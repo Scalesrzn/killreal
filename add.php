@@ -1,16 +1,16 @@
 <?php   
 if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
-	if (!empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST['year']) && !empty($_POST['description'])) {	if ($_FILES['uploadfile']['tmp_name']) {
+	if (!empty($_POST['name']) && !empty($_POST['doctor']) && !empty($_POST['year']) && !empty($_POST['description'])) {	if ($_FILES['uploadfile']['tmp_name']) {
 		$a = loadImage("add");		
 		if (empty($a['mess'])) {
 			if (empty($_SESSION['catalog'])) 
 				$_SESSION['catalog']=array(array("name"=>clearData($_POST['name']),
-					"brand"=>clearData($_POST['brand']),
+					"doctor"=>clearData($_POST['doctor']),
 					"year"=>clearData($_POST['year']),
 					"description"=>clearData($_POST['description']),
 					"image"=>$a['src']));
 			else array_push($_SESSION['catalog'], array("name"=>clearData($_POST['name']),
-				"brand"=>clearData($_POST['brand']),
+				"doctor"=>clearData($_POST['doctor']),
 				"year"=>clearData($_POST['year']),
 				"description"=>clearData($_POST['description']),
 				"image"=>$a['src']));			
@@ -24,12 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	else {			
 		if (empty($_SESSION['catalog'])) 
 			$_SESSION['catalog']=array(array("name"=>clearData($_POST['name']),
-				"brand"=>clearData($_POST['brand']),
+				"doctor"=>clearData($_POST['doctor']),
 				"year"=>clearData($_POST['year']),
 				"description"=>clearData($_POST['description']),
 				"image"=>""));
 		else array_push($_SESSION['catalog'], array("name"=>clearData($_POST['name']),
-			"brand"=>clearData($_POST['brand']),
+			"doctor"=>clearData($_POST['doctor']),
 			"year"=>clearData($_POST['year']),
 			"description"=>clearData($_POST['description']),
 			"image"=>""));			
@@ -46,23 +46,23 @@ else
 <form class="addtable" method='POST' action='index.php?page=add' ENCTYPE='multipart/form-data'>			
 	<table>
 		<tr>
-			<th>Товар:</th>
+			<th>Ваше имя:</th>
 			<td><input type='text' name='name' style="width:150%"></td>
 		</tr>
 		<tr>
-			<th>Бренд:</th> 
-			<td><input type='text' name='brand' style="width:150%"></td>
+			<th>Врач:</th> 
+			<td><input type='text' name='doctor' style="width:150%"></td>
 		</tr>			 			
 		<tr>
-			<th>Год модели:</th>
-			<td><input type='text' name='year' size='4'>&nbsp;год</td>
+			<th>Дата посещения:</th>
+			<td><input type='text' name='year' size='4'></td>
 		</tr>
 		<tr>
 			<th>Описание:</th>
 			<td><textarea name='description' rows='10' style="resize:none; width:150%"></textarea></td>
 		</tr>
 		<tr>
-			<th>Изображение:</th> 
+			<th>Изображение вашего недуга:</th> 
 			<td><input type='file' name='uploadfile' accept='image/jpeg'></td>
 		</tr>
 	</table>

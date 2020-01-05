@@ -1,12 +1,12 @@
 <?php
 $id = clearData($_GET['id']);	
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {		
-	if (!empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST['year']) && !empty($_POST['description'])) {	
+	if (!empty($_POST['name']) && !empty($_POST['doctor']) && !empty($_POST['year']) && !empty($_POST['description'])) {	
 		if ($_FILES['uploadfile']['tmp_name']) {				
 				$a = loadImage("edit"); 		
 				if (empty($a['mess'])) {
 					$_SESSION['catalog'][$id] = array("name"=>clearData($_POST['name']),
-						"brand"=>clearData($_POST['brand']),
+						"doctor"=>clearData($_POST['doctor']),
 						"year"=>clearData($_POST['year']),
 						"description"=>clearData($_POST['description']),
 						"image"=>$a['src']);			
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			else {		
 				$src = $_SESSION['catalog'][$id]['image'];
 				$_SESSION['catalog'][$id] = array("name"=>clearData($_POST['name']),
-					"brand"=>clearData($_POST['brand']),
+					"doctor"=>clearData($_POST['doctor']),
 					"year"=>clearData($_POST['year']),
 					"description"=>clearData($_POST['description']),
 					"image"=>$src);			
@@ -33,19 +33,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 	?>
 	
-	<h2 style="margin: 10px 100px 30px 200px;">Редактирование товара</h2>
+	<h2 style="margin: 10px 100px 30px 200px;">Редактирование записи к врачу</h2>
 	<form method='POST' action='index.php?page=edit&id=<?php echo $id; ?>' ENCTYPE='multipart/form-data'>			
 		<table>
 			<tr>
-				<th>Название товара:</th>
+				<th>Ваше имя:</th>
 				<td><input type='text' name='name' value='<?=$_SESSION['catalog'][$id]['name']?>' size="35"></td>
 			</tr>
 			<tr>
-				<th>Бренд:</th> 
-				<td><input type='text' name='brand' value='<?=$_SESSION['catalog'][$id]['brand']?>' size="35"></td>
+				<th>Врач:</th> 
+				<td><input type='text' name='doctor' value='<?=$_SESSION['catalog'][$id]['doctor']?>' size="35"></td>
 			</tr >
 			<tr>
-				<th>Год модели:</th>
+				<th>Дата посещения:</th>
 				<td><input type='text' name='year' value='<?=$_SESSION['catalog'][$id]['year']?>' size='4'>&nbsp;год</td>
 			</tr>
 			<tr>
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<td><textarea name='description' rows='10' cols='50' style="resize:none;" ><?=$_SESSION['catalog'][$id]['description']?></textarea></td>
 			</tr>
 			<tr>
-				<th>Изображение:</th> 
+				<th>Изображение вашего недуга:</th> 
 				<td><input type='file' name='uploadfile'></td>
 			</tr>
 		</table>

@@ -11,17 +11,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 <br/><br/>
 <table border="1" style="text-align:left;" align="center" >
 	<tr>
-		<th width="15%" bgcolor="#FA8072">Товар</th>
+		<th width="15%" bgcolor="#FA8072">Имя пациента</th>
 		<td  ><?= $_SESSION['catalog'][$id]['name'] ?></td>
 		<td rowspan="4"><img src='<?php if (empty($_SESSION['catalog'][$id]['image'])) echo "images/catalog/no-image.jpg"; else echo $_SESSION['catalog'][$id]['image'].'.jpg';?> '></td>
 	</tr>
 	<tr>
-		<th bgcolor="#FA8072">Бренд</th>
-		<td  width="45%"><?= $_SESSION['catalog'][$id]['brand']?></td>
+		<th bgcolor="#FA8072">Врач</th>
+		<td  width="45%"><?= $_SESSION['catalog'][$id]['doctor']?></td>
 	</tr>
 	<tr>
-		<th bgcolor="#FA8072">Год модели</th>
-		<td><?= $_SESSION['catalog'][$id]['year'] ?> год</td>
+		<th bgcolor="#FA8072">Дата посещения</th>
+		<td><?= $_SESSION['catalog'][$id]['year'] ?> </td>
 	</tr>
 	<tr height="150">
 		<th width="15%" bgcolor="#FA8072">Описание</th>
