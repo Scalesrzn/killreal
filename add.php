@@ -42,7 +42,7 @@ else
 }
 ?>
 
-<h2 style="margin: 10px 100px 30px 200px;">Добавить товар</h2>
+<h2 style="margin: 10px 100px 30px 200px;">Добавить запись</h2>
 <form class="addtable" method='POST' action='index.php?page=add' ENCTYPE='multipart/form-data'>			
 	<table>
 		<tr>
