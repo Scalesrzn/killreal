@@ -1,0 +1,170 @@
+*{
+	box-sizing: border-box;
+	padding: 0px;
+	margin: 0px;
+	
+}
+.main{
+	background:white;
+	font-family: Trebuchet MS, Helvetica;
+}
+
+.header img{
+	width: 100%;
+}
+
+.btn{
+	border: 0px;
+    width: 50%;
+    height: 5em;
+	background:linear-gradient(#B0E0E6, #32d8ed) #32d8ed;
+	color: white;
+    border-radius: 10px;
+	transition: 10s;
+	float: left;
+}
+.btn:hover { background: linear-gradient(#008c9e, #B0E0E6) #008c9e; }
+
+
+.menu {
+	height: 3.5em;
+	display: flex;
+	align-items: left;
+	justify-content: left;
+	position: fixed;
+	z-index: 5000;
+	width: 100%;
+	background-color: rgba(0,0,0,20%);
+}
+
+.menu button{
+	height: 3em;
+	width: 10em;
+	padding: 5px;
+	margin-top: 5px;
+	margin-right: 1em;
+	margin-left: 1em;
+
+}
+
+.image{
+	width: 500px;
+    height: 333px;
+	padding: 10px;
+
+}
+
+.gallery{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.content{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.comm{
+	color: black;
+	text-align: center;
+	font-size: 32px;
+	height: 2em;
+	margin: 0.5em;
+}
+
+.photo{
+	border-radius: 200px;
+	width: 150px;
+	height: 150px;
+}
+
+.userpix div{
+	display: inline-table;
+	justify-content: center;
+	align-items: center;
+	margin: 0.5em;
+	font-size:20px;
+	text-align: center;
+	margin-left:40px;
+	
+}
+.wrapper{
+	display:flex;
+}
+.center{
+	width:80%;
+	
+}
+.lborder{
+	float: left;
+	width: 10%;
+}
+
+.rborder{
+	float: right;
+	width: 10%;
+
+}
+
+.info{
+	padding: 40px;
+	display: flex;
+
+}
+
+.info div{
+	width: 50%;
+	text-align: left;
+
+}
+
+.icon{
+	margin-right: 5em;
+	
+}
+
+.text{
+	font-size: 30px;
+
+}
+
+.clients{
+	border-radius: 20px;
+	color: black;
+	background-color: rgba(234,249,246);
+}
+
+.footer{
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(234,249,246);
+
+}
+
+.footer{
+	border-top-left-radius: 20px; 
+	border-top-right-radius: 20px; 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.footer div{
+	width: 100%;
+}
+.infogr span{
+	display: inline-block;
+    vertical-align: middle;
+}
+
+.infogr br{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

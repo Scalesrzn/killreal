@@ -37,6 +37,14 @@
 		<div class='center'>
             <div class="toggle">
 					<?php
+						require 'base_registration.php';
+						if (!empty($_GET['page']))
+							$page = $_GET['page'];
+						if ($page == 'reg')
+						{
+							include 'registration.php';
+							exit;
+						}
 						if (!empty($_GET['page']))
 								$page = $_GET['page'];
 						require 'auth.php';
