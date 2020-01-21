@@ -1,4 +1,9 @@
 <?php
+$host="localhost"; 
+$user="scalesrzn_killre"; 
+$pass="kvXzsg4&";
+$database='scalesrzn_killre';
+$login = $_SESSION['user_login'];
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET['id']))
 {
 	$id = clearData($_GET['id']);

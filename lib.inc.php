@@ -123,7 +123,7 @@ function imageCheck()
 	function getTableInfo($host, $user, $pass, $database)
 	{
 		$dbh = mysqli_connect($host, $user, $pass, $database);
-		$query = 'SHOW COLUMNS FROM UsersLAB';
+		$query = 'SHOW COLUMNS FROM User';
 		$result = mysqli_query($dbh, $query);
 		echo "<table border='1' width='60%'><tr>
 			  <th width='20%'>Таблица</th>
@@ -133,7 +133,7 @@ function imageCheck()
 			  <th width='30%'>Ограничение на NULL</th></tr>";
 		while ($rows = mysqli_fetch_object($result)) 
 		{ 
-			echo "<tr><td>UsersLAB</td><td>$rows->Field</td><td>$rows->Type</td><td>$rows->Key</td><td>$rows->Null</td></tr>";
+			echo "<tr><td>User</td><td>$rows->Field</td><td>$rows->Type</td><td>$rows->Key</td><td>$rows->Null</td></tr>";
 		}
 		$query = 'SHOW COLUMNS FROM Purchase';
 		$result = mysqli_query($dbh, $query);

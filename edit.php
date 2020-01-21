@@ -9,16 +9,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')   $id = clearData($_GET['id']);
 if ($_SERVER['REQUEST_METHOD'] == 'POST')  $id = clearData($_POST['id']);
 
 $dbh = mysqli_connect($host, $user, $pass, $database);
-$result = mysqli_query($dbh, "SELECT * FROM ITEMS WHERE nametovar='$id'");
+$result = mysqli_query($dbh, "SELECT * FROM ITEMS WHERE DOCTOR='$id'");
 $row = mysqli_fetch_row($result);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-	if (!empty($_POST['brand']) && !empty($_POST['year']) && !empty($_POST['description']))
+	if (!empty($_POST['name']) && !empty($_POST['year']) && !empty($_POST['description']))
 	{
-		$nametovar = clearData($_POST['nametovar']);
-		$total_items = mysqli_fetch_row(mysqli_query($dbh,"SELECT COUNT(*) FROM ITEMS WHERE nametovar='$nametovar'"));
-		$brand = clearData($_POST['brand']);
+		$doctor = clearData($_POST['DOCTOR']);
+		$total_items = mysqli_fetch_row(mysqli_query($dbh,"SELECT COUNT(*) FROM ITEMS WHERE DOCTOR='$doctor'"));
+		$name = clearData($_POST['name']);
 		$year = clearData($_POST['year']);
 		$description = clearData($_POST['description']);
 		$description = preg_replace("~(?:(?:https?|ftp|telnet)://(?:[a-z0-9_-]{1,32}".
@@ -26,11 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 				"org|mil|edu|arpa|gov|biz|info|aero|inc|name|[a-z]{2})|(?!0)(?:(?".
 				"!0[^.]|255)[0-9]{1,3}\.){3}(?!0|255)[0-9]{1,3})(?:/[a-z0-9.,_@%&".
 				"?+=\~/-]*)?(?:#[^ '\"&<>]*)?~i",'',$description);
-		if (($nametovar <> $row[0]) or (!empty($_FILES['uploadfile']['name'])))
+		if (($doctor <> $row[0]) or (!empty($_FILES['uploadfile']['name'])))
 		{
-			if ($nametovar <> $row[0])
+			if ($doctor <> $row[0])
 			{
-				rename($row[7], $file_path . $nametovar . '.jpg');
+				rename($row[7], $file_path . $doctor . '.jpg');
 			}
 			if (!empty($_FILES['uploadfile']['name']))
 			{
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 				{
 					$name = resize($_FILES['uploadfile']);
 					$uploadfile = $file_path . $name;
-					if (@copy($tmp_path . $name, $file_path . $nametovar . '.jpg'))
+					if (@copy($tmp_path . $name, $file_path . $doctor . '.jpg'))
 						unlink($tmp_path . $name);
 				}
 				else
@@ -49,14 +49,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 					exit;
 				}
 			}
-			$uploadlink = $file_path . $nametovar . '.jpg';
+			$uploadlink = $file_path . $doctor . '.jpg';
 			
-			$query = "UPDATE ITEMS SET nametovar='$nametovar',brand='$brand',year='$year',DESCRIPTION='$description',uploadlink='$uploadlink' WHERE nametovar='$id'";
+			$query = "UPDATE ITEMS SET DOCTOR='$doctor',NAME='$name',year='$year',DESCRIPTION='$description',uploadlink='$uploadlink' WHERE DOCTOR='$id'";
 		}
 		else
 		{
 			
-			$query = "UPDATE ITEMS SET nametovar='$nametovar',brand='$brand',year='$year',DESCRIPTION='$description' WHERE nametovar='$id'";
+			$query = "UPDATE ITEMS SET DOCTOR='$doctor',NAME='$name',year='$year',DESCRIPTION='$description' WHERE DOCTOR='$id'";
 		}
 		mysqli_query($dbh, $query) or die ("Сбой при доступе к БД: " );
 		header("Location: index.php?page=catalog");
@@ -65,8 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 }
 
 ?>
-	<h2 style="margin: 10px 100px 30px 200px;">Редактирование записи к врачу</h2>
+	<h2 style="margin: 10px 100px 30px 200px;">Редактирование записи</h2>
 	<form method='POST' action='index.php?page=edit&id=<?php echo $id; ?>' ENCTYPE='multipart/form-data'>			
+		<input type='text' hidden name='id' value='<?=$row[0]?>'>			
 		<table>
 			<tr>
 				<th>Ваше имя:</th>
@@ -74,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			</tr>
 			<tr>
 				<th>Врач:</th> 
-				<td><input type='text' name='doctor' value='<?=$_SESSION['catalog'][$id]['doctor']?>' size="35"></td>
+				<td><input type='text' name='DOCTOR' value='<?=$_SESSION['catalog'][$id]['DOCTOR']?>' size="35"></td>
 			</tr >
 			<tr>
 				<th>Дата посещения:</th>

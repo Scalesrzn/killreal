@@ -1,50 +1,4 @@
-<!-- <?php
-	if (isset($_POST['add'])) header("Location: index.php?page=add");
-	?>
-	<div style="width:800px">
-		<h2 style="margin: 0px 100px 30px 400px;">Каталог</h2>	
-		<form action="index.php?page=catalog" method="POST">
-			<div> 
-                <input  class="btn" type="submit" name="add" value="Добавить">
-                <input  class="btn" type="submit" name="del" value="Удалить">
-			</div>	
-			<?php	  
-			if	(isset($_POST['del'])) {	
-				if (!empty($_POST['delId'])) {			    
-					foreach($_POST['delId'] as $val) {
-						@unlink($_SESSION['catalog'][$val]['image'].'.jpg');   
-						unset($_SESSION['catalog'][$val]);
-					}
-				}
-				else echo "<font size='5' color='DarkRed'><strong>Выберите записи для удаления!</strong></font>";
-			}
-			?>		
-			<br>
-			<table class="addtable" style="width: 100%; height: 100%" text-align="center" border="1" >
-				<tr>
-					<th></th>
-					<th>Ваше имя</th>
-					<th>Врач</th>				
-					<th>Дата посещения</th>
-					<th>Описание</th>
-					<tr>			
-						<?php
-						if (!empty($_SESSION['catalog'])){
-							foreach($_SESSION['catalog'] as $doctor => $massiv) {
-								echo "<tr>";						
-								echo "<td width='10px'><input type='checkbox' name='delId[]' value=$doctor></td>";
-								echo "<td><a href='index.php?page=item&id=$doctor'>".$massiv['name']."</a></td><td>".$massiv['doctor']."</td><td>".$massiv['year']."</td><td>".$massiv['description']."</td>";
-								echo "</tr>";
-							}
-						}
-						?>
-					</table>
-				</form>
-			</div>
- -->
- 
-
- <div class='addtable'>
+<div class='addtable'>
 	<form method='GET' action='index.php'>
 		<input type='hidden' name='page' value='catalog'>
 		<p>Доктор:</br><input type='text' name='doctor' style='margin-left:45px'><? $doctor ?></input></p>
@@ -142,8 +96,8 @@
 		}
 		$result = mysqli_query($dbh, $query);
 		echo "<table class='addtable' border='1'><tr>
-		<th width='35%'><a href='index.php?page=catalog&sort=1&doctor=$doctor&type=$type'>Имя пациента</a></th>
-		<th width='25%'><a href='index.php?page=catalog&sort=2&doctor=$doctor&type=$type'>Врач</a></th>
+		<th width='35%'><a href='index.php?page=catalog&sort=1&doctor=$doctor&type=$type'>Врач</a></th>
+		<th width='25%'><a href='index.php?page=catalog&sort=2&doctor=$doctor&type=$type'>Имя пациента</a></th>
 		<th width='20%'><a href='index.php?page=catalog&sort=3&doctor=$doctor&type=$type'>Дата посещения</a></th>
 		<th width='15%'><a href='index.php?page=catalog&sort=4&doctor=$doctor&type=$type'>Описание недуга</a></th>
 		<th width='5%'></th></tr>";

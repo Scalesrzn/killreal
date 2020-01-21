@@ -46,7 +46,7 @@ else {
 							<p>Пароль:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="password" ><br>
 								<p><input class="btn" type="submit" value="Отправить"><br>
 								</form>
-								<button  class="btn" onclick="location.href='http://vrednayapolza.ru/registration.php';">Зарегистрироваться</button>
+								<button  class="btn" onclick="location.href='/registration.php';">Зарегистрироваться</button>
 
 							</td>
 						</tr>
