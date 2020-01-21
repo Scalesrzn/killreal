@@ -36,7 +36,7 @@ if (preg_match('/^((More[\s]?<[\s]prg1.pas)|(TYPE[\s]prg1.pas[\s]\|*more))$/i', 
 	{
 	$correct++;
 	}
-if (preg_match('/^vol[\s]+c:[\s]*>vol\.txt$/i', $answer[3]))
+if (preg_match("/^(Attrib[\s]'+a'[\s]'-h'[\s]'*.sys'[\s]\/s)", $answer[3]))
 	{
 	$correct++;
 	}
