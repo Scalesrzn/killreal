@@ -1,18 +1,19 @@
 <form class='addtable' method="post">
 			<b>Вопрос №1.</b><br/>
-	Создать подкаталог PASCAL в каталоге D:\PROG (md d:\pgor\pascal)<br/><br/>
+	Создать подкаталог PASCAL в каталоге D:\PROG (md d:\pgor\pascal, D:\PROG\PASCAL)<br/><br/>
   	Ответ: <input name="answer1" type="text" size="100" maxlength="255"><br/><br/>
 			<b>Вопрос №2.</b><br/>
-	Назначить каталогу D:\TEST виртуальный диск с именем F: <br/><br/>
+	Выяснить метку тома с именем E: (vol e:, LABEL E:) <br/><br/>
   	Ответ: <input name="answer2" type="text" size="100" maxlength="255"><br/><br/>
 			<b>Вопрос №3.</b><br/>
-	Вывести на монитор структуру каталогов диска в дисководе а:, исходя из корневого каталога, и список имен файлов, содержащихся в каталогах. Структура должна отображаться на экране дисплея постранично <br/><br/>
+	Вывести на монитор содержимое файла prg1.pas, находящегося в текущем каталоге, по частям размером в один экран (More < prg1.pas, TYPE prg1.pas |more) <br/><br/>
   	Ответ: <input name="answer3" type="text" size="100" maxlength="255"><br/><br/>
 			<b>Вопрос №4.</b><br/>
-	Вывести в файл VOL.TXT метку тома для диска C: <br/><br/>
+	Сделать видимыми все файлы с расширением SYS текущего и подчиненных ему каталогов и установите у них разряд "Архивный" 
+	(Attrib +a -h *.sys /s, attrib -h +a *.sys /s) <br/><br/>
   	Ответ: <input name="answer4" type="text" size="100" maxlength="255"><br/><br/>
 			<b>Вопрос №5.</b><br/>
-	Скопировать в корневой каталог диска в дисководе В: все файлы каталога D:\PROGRAMM и, возможно, файлы имеющихся там подкаталогов, у которых установлен бит "архивный", без сброса после копирования этого бита в исходное состояние<br/><br/>
+	Установить текущей датой 12 декабря 2010 г (date 12-12-2010, date 12/12/2010, date 12.12.2010)<br/><br/>
   	Ответ: <input name="answer5" type="text" size="100" maxlength="255"><br/><br/>
   	<input type="submit" class='btn' value="Ответить" style="margin:10px">
 </form><br/>
@@ -36,11 +37,11 @@ if (preg_match('/^((More[\s]?<[\s]prg1.pas)|(TYPE[\s]prg1.pas[\s]\|*more))$/i', 
 	{
 	$correct++;
 	}
-if (preg_match("/^(Attrib[\s]'+a'[\s]'-h'[\s]'*.sys'[\s]\/s)", $answer[3]))
+if (preg_match("/^attrib[\s]\+a[\s]-h[\s]\*\.sys[\s]\/s$/i", $answer[3]))
 	{
 	$correct++;
 	}
-if (preg_match('/^xcopy\s+d:\\\\programm(\\\\\*)?[\s]+b:[\s]+\/s\/a$/i', $answer[4]))
+if (preg_match('/^date[\s]12(\.|\-|\/)12(\.|\-|\/)2010$/i', $answer[4]))
 	{
 		$correct++;
 	}
