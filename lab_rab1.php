@@ -1,25 +1,4 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="style.css" rel="stylesheet">
-<title>Частная зубная поликлиника "Шпак"</title>
-</head>
 
-<body>
-
-<div class='main'>
-	<div class='header'>
-        <?php include 'top.inc.php'?>
-		
-	</div>
-	<div class="wrapper">
-		<div class='lborder'>
-                <div class="menu">
-                    <? include 'menu.inc.php'?> 
-                </div>
-		</div>
-		
 		<div class='center'>
                 <div class="table-structure">
                         <h2 style="text-align:center;">Табличная структура</h2>
@@ -101,14 +80,3 @@
 		</div>
 	</div>
 	
-
-	<div class="footer">
-        <? include 'bottom.inc.php'?>
-	</div>
-</div>
-
-
-
-
-</body>
-</html>

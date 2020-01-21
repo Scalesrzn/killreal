@@ -1,38 +1,70 @@
 <?php
-$id = clearData($_GET['id']);	
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {		
-	if (!empty($_POST['name']) && !empty($_POST['doctor']) && !empty($_POST['year']) && !empty($_POST['description'])) {	
-		if ($_FILES['uploadfile']['tmp_name']) {				
-				$a = loadImage("edit"); 		
-				if (empty($a['mess'])) {
-					$_SESSION['catalog'][$id] = array("name"=>clearData($_POST['name']),
-						"doctor"=>clearData($_POST['doctor']),
-						"year"=>clearData($_POST['year']),
-						"description"=>clearData($_POST['description']),
-						"image"=>$a['src']);			
-					header("Location: index.php?page=catalog");
+$host="localhost"; 
+$user="scalesrzn_killre"; 
+$pass="kvXzsg4&";
+$database='scalesrzn_killre';
+$login = $_SESSION['user_login'];
+$file_path = 'Images/';
+if ($_SERVER['REQUEST_METHOD'] == 'GET')   $id = clearData($_GET['id']);
+if ($_SERVER['REQUEST_METHOD'] == 'POST')  $id = clearData($_POST['id']);
+
+$dbh = mysqli_connect($host, $user, $pass, $database);
+$result = mysqli_query($dbh, "SELECT * FROM ITEMS WHERE nametovar='$id'");
+$row = mysqli_fetch_row($result);
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+	if (!empty($_POST['brand']) && !empty($_POST['year']) && !empty($_POST['description']))
+	{
+		$nametovar = clearData($_POST['nametovar']);
+		$total_items = mysqli_fetch_row(mysqli_query($dbh,"SELECT COUNT(*) FROM ITEMS WHERE nametovar='$nametovar'"));
+		$brand = clearData($_POST['brand']);
+		$year = clearData($_POST['year']);
+		$description = clearData($_POST['description']);
+		$description = preg_replace("~(?:(?:https?|ftp|telnet)://(?:[a-z0-9_-]{1,32}".
+				"(?::[a-z0-9_-]{1,32})?@)?)?(?:(?:[a-z0-9-]{1,128}\.)+(?:com|net|".
+				"org|mil|edu|arpa|gov|biz|info|aero|inc|name|[a-z]{2})|(?!0)(?:(?".
+				"!0[^.]|255)[0-9]{1,3}\.){3}(?!0|255)[0-9]{1,3})(?:/[a-z0-9.,_@%&".
+				"?+=\~/-]*)?(?:#[^ '\"&<>]*)?~i",'',$description);
+		if (($nametovar <> $row[0]) or (!empty($_FILES['uploadfile']['name'])))
+		{
+			if ($nametovar <> $row[0])
+			{
+				rename($row[7], $file_path . $nametovar . '.jpg');
+			}
+			if (!empty($_FILES['uploadfile']['name']))
+			{
+				$tmp_path = 'tmp/';
+				$result = imageCheck();
+				if ($result == 1)
+				{
+					$name = resize($_FILES['uploadfile']);
+					$uploadfile = $file_path . $name;
+					if (@copy($tmp_path . $name, $file_path . $nametovar . '.jpg'))
+						unlink($tmp_path . $name);
+				}
+				else
+				{
+					echo $result;
 					exit;
 				}
-				else { 
-					echo $a['mess'];
-				}
 			}
-			else {		
-				$src = $_SESSION['catalog'][$id]['image'];
-				$_SESSION['catalog'][$id] = array("name"=>clearData($_POST['name']),
-					"doctor"=>clearData($_POST['doctor']),
-					"year"=>clearData($_POST['year']),
-					"description"=>clearData($_POST['description']),
-					"image"=>$src);			
-				header("Location: index.php?page=catalog");
-				exit;
-			}
+			$uploadlink = $file_path . $nametovar . '.jpg';
+			
+			$query = "UPDATE ITEMS SET nametovar='$nametovar',brand='$brand',year='$year',DESCRIPTION='$description',uploadlink='$uploadlink' WHERE nametovar='$id'";
 		}
-		else 
-			echo '<font size="5" color="DarkRed"><strong>Заполните все поля!</strong></font>';		
+		else
+		{
+			
+			$query = "UPDATE ITEMS SET nametovar='$nametovar',brand='$brand',year='$year',DESCRIPTION='$description' WHERE nametovar='$id'";
+		}
+		mysqli_query($dbh, $query) or die ("Сбой при доступе к БД: " );
+		header("Location: index.php?page=catalog");
 	}
-	?>
-	
+	else echo 'Полностью заполните форму';	
+}
+
+?>
 	<h2 style="margin: 10px 100px 30px 200px;">Редактирование записи к врачу</h2>
 	<form method='POST' action='index.php?page=edit&id=<?php echo $id; ?>' ENCTYPE='multipart/form-data'>			
 		<table>

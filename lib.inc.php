@@ -69,4 +69,99 @@ function loadImage($p) {    // функция принимает парамет�
 				}
 				return $a;
 			}
-			?>
+
+function imageCheck()
+	{
+		if ($_FILES['uploadfile']['type'] == "image/jpeg")
+		{
+			if ($_FILES['uploadfile']['size']<=1024000)
+				return 1;
+			else
+				return "Размер файла не должен превышать 1000Кб";
+		}
+		else
+			return "Файл должен иметь jpeg-расширение";
+	}
+
+	
+	function resize($file)
+    {
+        global $tmp_path;
+        // Ограничение по ширине в пикселях
+        $max_size = 250;
+        // Cоздаём исходное изображение на основе исходного файла
+        $src = imagecreatefromjpeg($file['tmp_name']); //@
+        // Определяем ширину и высоту изображения
+        $w_src = imagesx($src);
+        $h_src = imagesy($src);
+        // Если ширина больше заданной
+        if ($w_src > $max_size)
+        {
+            // Вычисление пропорций
+            $ratio = $w_src/$max_size;
+            $w_dest = round($w_src/$ratio);
+            $h_dest = round($h_src/$ratio);
+            // Создаём пустую картинку
+            $dest = imagecreatetruecolor($w_dest, $h_dest);
+            // Копируем старое изображение в новое с изменением параметров
+            imagecopyresampled($dest, $src, 0, 0, 0, 0, $w_dest, $h_dest, $w_src, $h_src);
+            // Вывод картинки и очистка памяти
+            imagejpeg($dest, $tmp_path . $file['name']);
+            imagedestroy($dest);
+            imagedestroy($src);
+            return $file['name'];
+        }
+        else
+        {
+            // Вывод картинки и очистка памяти
+            imagejpeg($src, $tmp_path . $file['name']);
+            imagedestroy($src);
+            return $file['name'];
+        }
+    }
+
+	function getTableInfo($host, $user, $pass, $database)
+	{
+		$dbh = mysqli_connect($host, $user, $pass, $database);
+		$query = 'SHOW COLUMNS FROM UsersLAB';
+		$result = mysqli_query($dbh, $query);
+		echo "<table border='1' width='60%'><tr>
+			  <th width='20%'>Таблица</th>
+			  <th width='20%'>Поле</th>
+			  <th width='10%'>Тип</th>
+			  <th width='10%'>Длина</th>
+			  <th width='30%'>Ограничение на NULL</th></tr>";
+		while ($rows = mysqli_fetch_object($result)) 
+		{ 
+			echo "<tr><td>UsersLAB</td><td>$rows->Field</td><td>$rows->Type</td><td>$rows->Key</td><td>$rows->Null</td></tr>";
+		}
+		$query = 'SHOW COLUMNS FROM Purchase';
+		$result = mysqli_query($dbh, $query);
+		while ($rows = mysqli_fetch_object($result)) 
+		{ 
+			echo "<tr><td>Purchase</td><td>$rows->Field</td><td>$rows->Type</td><td>$rows->Key</td><td>$rows->Null</td></tr>";
+		}
+		echo "</table>";
+	}
+	function getOutputMenu($num, $total_items, $n, $param) {
+		//Инициализация переменных
+		$pervpage = "";
+		$page1left = "";
+		$page2left = "";
+		$page1right = "";
+		$page2right = "";
+		$nextpage = "";
+		$total = intval(($total_items[0] - 1) / $num) + 1; 
+		$n = intval($n);
+		if($n > $total) $n = $total;
+		if ($n != 1) $pervpage = '<a href= ./index.php?' .$param. '&n=1><<</a><a href= ./index.php?' .$param. '&n='. ($n - 1) .'><</a>';  
+		if ($n != $total) $nextpage = '<a href= ./index.php?' .$param. '&n='. ($n + 1) .'>></a><a href= ./index.php?' .$param. '&n=' .$total. '>>></a>';   
+		if($n - 2 > 0) $page2left = ' <a href= ./index.php?' .$param. '&n='. ($n - 2) .'>'. ($n - 2) .'</a> | ';  
+		if($n - 1 > 0) $page1left = '<a href= ./index.php?' .$param. '&n='. ($n - 1) .'>'. ($n - 1) .'</a> | ';  
+		if($n + 2 <= $total) $page2right = ' | <a href= ./index.php?' .$param. '&n='. ($n + 2) .'>'. ($n + 2) .'</a>';  
+		if($n + 1 <= $total) $page1right = ' | <a href= ./index.php?' .$param. '&n='. ($n + 1) .'>'. ($n + 1) .'</a>'; 
+		echo '<div style="margin-left:40px">'.$pervpage.$page2left.$page1left.'<b>'.$n.'</b>'.$page1right.$page2right.$nextpage.'</div>';  
+	}
+	
+
+   ?>

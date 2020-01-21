@@ -47,8 +47,8 @@
  <div class='addtable'>
 	<form method='GET' action='index.php'>
 		<input type='hidden' name='page' value='catalog'>
-		<p>Название товара:</br><input type='text' name='doctor' style='margin-left:45px'><? $doctor ?></input></p>
-		<p>Бренд:</br><input name='name' style='margin-left:32px'><? $name ?></input></p>
+		<p>Доктор:</br><input type='text' name='doctor' style='margin-left:45px'><? $doctor ?></input></p>
+		<p>Ваше имя:</br><input name='name' style='margin-left:32px'><? $name ?></input></p>
 		<input type='submit' value='Поиск' class='btn'>
 	</form>
 </div>
@@ -64,9 +64,10 @@
 		$type = "";
 		$order_by = "";
 		$host="localhost"; 
-		$user="scalesrzn_phplab"; 
-		$pass="WCHx&Z2l";
-		$database='scalesrzn_phplab';
+		$user="scalesrzn_killre"; 
+		$pass="kvXzsg4&";
+		$database='scalesrzn_killre';
+		$login = $_SESSION['user_login'];
 		$dbh = mysqli_connect($host, $user, $pass, $database);
 		if (isset($_POST['delete']) && isset($_POST['cbs']))
 		{
@@ -141,10 +142,10 @@
 		}
 		$result = mysqli_query($dbh, $query);
 		echo "<table class='addtable' border='1'><tr>
-		<th width='35%'><a href='index.php?page=catalog&sort=1&doctor=$doctor&type=$type'>Название товара</a></th>
-		<th width='25%'><a href='index.php?page=catalog&sort=2&doctor=$doctor&type=$type'>Бренд</a></th>
-		<th width='20%'><a href='index.php?page=catalog&sort=3&doctor=$doctor&type=$type'>Год модели</a></th>
-		<th width='15%'><a href='index.php?page=catalog&sort=4&doctor=$doctor&type=$type'>Описание</a></th>
+		<th width='35%'><a href='index.php?page=catalog&sort=1&doctor=$doctor&type=$type'>Имя пациента</a></th>
+		<th width='25%'><a href='index.php?page=catalog&sort=2&doctor=$doctor&type=$type'>Врач</a></th>
+		<th width='20%'><a href='index.php?page=catalog&sort=3&doctor=$doctor&type=$type'>Дата посещения</a></th>
+		<th width='15%'><a href='index.php?page=catalog&sort=4&doctor=$doctor&type=$type'>Описание недуга</a></th>
 		<th width='5%'></th></tr>";
 
 		while ($row = mysqli_fetch_row($result)) 

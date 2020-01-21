@@ -56,19 +56,25 @@
 						else switch($page)
 						{
 							case 'lab1': 
-							include 'lab_rab1.php'; break;
-							case 'lab2': 
-							include 'lab_rab2.php'; break;
-							case 'lab3': 
-							include 'lab_rab3.php'; break;				
-							case 'catalog':
-							include 'catalog.php'; break;	
-							case 'add': 
-							include 'add.php'; break;
-							case 'item': 
-							include 'item.php'; break;	
-							case 'edit': 
-							include 'edit.php'; break;	
+								include 'lab_rab1.php'; break;
+								case 'lab2': 
+								include 'lab_rab2.php'; break;
+								case 'lab3': 
+								include 'lab_rab3.php'; break;				
+								case 'lab4':
+								include 'lab_rab4.php'; break;
+								case 'lab5': 
+								include 'lab_rab5.php'; break;	
+								case 'reg':
+								include 'registration.php'; break;		
+								case 'catalog':
+								include 'catalog.php'; break;	
+								case 'add': 
+								include 'add.php'; break;
+								case 'item': 
+								include 'item.php'; break;	
+								case 'edit': 
+								include 'edit.php'; break;		
 						}		
 					?>
 			</div>
