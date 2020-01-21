@@ -1,4 +1,4 @@
-<div class='addtable'>
+<div  >
 	<form method='GET' action='index.php'>
 		<input type='hidden' name='page' value='catalog'>
 		<p>Доктор:</br><input type='text' name='doctor' style='margin-left:45px'><? $doctor ?></input></p>
@@ -95,7 +95,7 @@
 			$query = "SELECT * FROM ITEMS WHERE Login='$login'" . implode(' OR ', $conditions). $and . $condition2. " ". $order_by;
 		}
 		$result = mysqli_query($dbh, $query);
-		echo "<table class='addtable' border='1'><tr>
+		echo "<table   border='1'><tr>
 		<th width='35%'><a href='index.php?page=catalog&sort=1&doctor=$doctor&type=$type'>Врач</a></th>
 		<th width='25%'><a href='index.php?page=catalog&sort=2&doctor=$doctor&type=$type'>Имя пациента</a></th>
 		<th width='20%'><a href='index.php?page=catalog&sort=3&doctor=$doctor&type=$type'>Дата посещения</a></th>

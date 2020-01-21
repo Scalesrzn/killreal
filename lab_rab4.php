@@ -45,7 +45,7 @@ mysqli_query($dbh, "INSERT INTO Purchase (name,cost,userid,date_purchase,descrip
 mysqli_query($dbh, "INSERT INTO Purchase (name,cost,userid,date_purchase,description) VALUES ('Андроид','666','1','2017.11.06 20:23:56','Не слушается')");
 
 //Вывод содержимого таблиц
-echo "</br>Таблица Purchase:</br><table border='1'  class='addtable' width='80%'>
+echo "</br>Таблица Purchase:</br><table border='1'    width='80%'>
 <tr>
 <th width='10%'>ID</th>
 <th width='30%'>Название товара</th>
@@ -66,7 +66,7 @@ while ($row = mysqli_fetch_row($result))
 	<td>$row[5]</td></tr>";
 }
 echo '</table>';
-echo "</br>Таблица Users:</br><table border='1'  class='addtable' width='80%'>
+echo "</br>Таблица Users:</br><table border='1'    width='80%'>
 <tr>
 <th width='10%'>ID</th>
 <th width='30%'>Имя</th>
@@ -91,7 +91,7 @@ echo '</table>';
 echo "</br>Запрос №1:</br>
 Вывести информацию о покупках Игнатова, сумма которых более 50</br></br>
 
-<table border='1'  class='addtable' width='80%'>
+<table border='1'    width='80%'>
 <tr>
 <th width='45%'>Название товара</th>
 <th width='20%''>Цена, руб</th>
@@ -111,7 +111,7 @@ echo '</table>';
 echo "</br>Запрос №2:</br>
 Вывести информацию о покупках с положительными отзывами</br></br>
 
-<table border='1'  class='addtable' width='80%'>
+<table border='1'    width='80%'>
 <tr>
 <th width='30%'>Товар</th>
 <th width='20%'>Имя покупателя</th>

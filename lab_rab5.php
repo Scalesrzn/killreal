@@ -1,4 +1,4 @@
-<form class='addtable' method="post">
+<form   method="post">
 			<b>Вопрос №1.</b><br/>
 	Создать подкаталог PASCAL в каталоге D:\PROG (md d:\pgor\pascal, D:\PROG\PASCAL)<br/><br/>
   	Ответ: <input name="answer1" type="text" size="100" maxlength="255"><br/><br/>
